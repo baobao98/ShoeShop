@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShoeShopApp.Model;
 
 namespace ShoeShopApp.ViewModel
 {
@@ -13,7 +14,10 @@ namespace ShoeShopApp.ViewModel
 
         public MainViewModel()
         {
-            textContent = "Hello World";
+            List<NhaCungCap> nhaCungCaps = new List<NhaCungCap>();
+            nhaCungCaps = DataProvider.Ins.db.NhaCungCaps.ToList();
+            textContent ="Hello World!!! This text is loaded from database (table NhaCungCap): <"+nhaCungCaps[0].TenNCC+"> " +
+                "Test connect successfully";
         }
 
     }

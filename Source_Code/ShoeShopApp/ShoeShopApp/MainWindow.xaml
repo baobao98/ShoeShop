@@ -23,7 +23,7 @@
     <Grid>
         <TextBlock Text="{Binding textContent}" x:Name="A"
                    VerticalAlignment="Center"  TextAlignment="Center"
-                   Height="130" FontSize="40"
+                   Height="200" FontSize="40"
                    Margin="0,50,0,45" Foreground="Gray"
                    TextWrapping="WrapWithOverflow">
         </TextBlock>
