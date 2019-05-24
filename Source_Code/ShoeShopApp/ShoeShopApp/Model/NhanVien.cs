@@ -28,6 +28,7 @@ namespace ShoeShopApp.Model
         public Nullable<System.DateTime> NgaySinh { get; set; }
         public int MaLoaiNV { get; set; }
         public int TaiKhoan { get; set; }
+        public bool isDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }

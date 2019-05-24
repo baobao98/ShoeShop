@@ -24,6 +24,7 @@ namespace ShoeShopApp.Model
         public int MaKH { get; set; }
         public Nullable<int> MaNV { get; set; }
         public Nullable<System.DateTime> NgayLapHD { get; set; }
+        public bool isDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiaTietHoaDon> ChiaTietHoaDons { get; set; }

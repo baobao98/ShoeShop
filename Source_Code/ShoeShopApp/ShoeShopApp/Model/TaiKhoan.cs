@@ -23,6 +23,7 @@ namespace ShoeShopApp.Model
         public int ID { get; set; }
         public string TenDN { get; set; }
         public string MatKhau { get; set; }
+        public bool isDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NhanVien> NhanViens { get; set; }

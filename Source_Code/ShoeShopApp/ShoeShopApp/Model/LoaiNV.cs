@@ -23,6 +23,7 @@ namespace ShoeShopApp.Model
         public int MaLoaiNV { get; set; }
         public string TenLoaiNV { get; set; }
         public Nullable<decimal> TienThuong { get; set; }
+        public bool isDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NhanVien> NhanViens { get; set; }

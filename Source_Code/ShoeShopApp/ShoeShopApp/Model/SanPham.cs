@@ -27,6 +27,7 @@ namespace ShoeShopApp.Model
         public string Mau { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public string Anh { get; set; }
+        public bool isDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiaTietHoaDon> ChiaTietHoaDons { get; set; }
