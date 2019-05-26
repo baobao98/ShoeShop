@@ -11,19 +11,25 @@ namespace ShoeShopApp.Model
 {
     using System;
     using System.Collections.Generic;
+    using ShoeShopApp.ViewModel;
     
-    public partial class LoaiNV
+    public partial class LoaiNV:BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LoaiNV()
         {
             this.NhanViens = new HashSet<NhanVien>();
         }
-    
-        public int MaLoaiNV { get; set; }
-        public string TenLoaiNV { get; set; }
-        public Nullable<decimal> TienThuong { get; set; }
-        public bool isDeleted { get; set; }
+
+        private int _MaLoaiNV;
+        public int MaLoaiNV { get=> _MaLoaiNV; set { _MaLoaiNV = value;OnPropertyChanged(); } }
+        private string _TenLoaiNV;
+        public string TenLoaiNV { get=> _TenLoaiNV; set { _TenLoaiNV = value;OnPropertyChanged(); } }
+        private Nullable<decimal> _TienThuong;
+        public Nullable<decimal> TienThuong { get=> _TienThuong; set { _TienThuong = value;OnPropertyChanged(); } }
+
+        private bool _isDeleted;
+        public bool isDeleted { get=> _isDeleted; set { _isDeleted = value;OnPropertyChanged(); } }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NhanVien> NhanViens { get; set; }
