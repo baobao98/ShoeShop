@@ -16,7 +16,6 @@ namespace ShoeShopApp.ViewModel
         public ICommand LoadedWindowCommand { get; set; }
         private string _textContent;
         public string textContent { get => _textContent; set { _textContent = value; OnPropertyChanged(); } }
-
         public MainViewModel()
         {
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
@@ -26,6 +25,7 @@ namespace ShoeShopApp.ViewModel
                   {
                       return;
                   }
+                  
                   p.Hide();
                   LoginWindow loginWindow = new LoginWindow();
                   loginWindow.ShowDialog();
@@ -37,16 +37,21 @@ namespace ShoeShopApp.ViewModel
                   if (loginVM.IsLogin)
                   {
                       p.Show();
+                      load();
                   }
                   else
                   {
                       p.Close();
                   }
               });
-            List<NhaCungCap> nhaCungCaps = new List<NhaCungCap>();
-            nhaCungCaps = DataProvider.Ins.db.NhaCungCaps.ToList();
-            textContent = "Hello World!!! This text is loaded from database (table NhaCungCap): <" + nhaCungCaps[0].TenNCC + "> " +
-                "Test connect successfully";
+            //List<NhaCungCap> nhaCungCaps = new List<NhaCungCap>();
+            //nhaCungCaps = DataProvider.Ins.db.NhaCungCaps.ToList();
+            //textContent = "Hello World!!! This text is loaded from database (table NhaCungCap): <" + nhaCungCaps[0].TenNCC + "> " +
+            //    "Test connect successfully";
+        }
+        void load()
+        {
+
         }
     }
 }

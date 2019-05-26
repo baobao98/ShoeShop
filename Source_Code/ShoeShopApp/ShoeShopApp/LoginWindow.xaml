@@ -60,6 +60,7 @@
             </StackPanel>
         </Grid>
         <Button Width="150" 
+                IsDefault="True"
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
                 Margin="0,65" 
