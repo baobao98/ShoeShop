@@ -9,10 +9,11 @@
 
 namespace ShoeShopApp.Model
 {
-    using ShoeShopApp.ViewModel;
     using System;
     using System.Collections.Generic;
-    
+    using ShoeShopApp.Model;
+    using ShoeShopApp.ViewModel;
+
     public partial class LoaiSP:BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,23 +21,23 @@ namespace ShoeShopApp.Model
         {
             this.SanPhams = new HashSet<SanPham>();
         }
-        int _MaLoaiSP;
-        public int MaLoaiSP { get => _MaLoaiSP; set { _MaLoaiSP = value; OnPropertyChanged(); } }
-        
-        string _TenLoaiSP;
-        public string TenLoaiSP { get => _TenLoaiSP; set { _TenLoaiSP = value; OnPropertyChanged(); } }
+        private int _MaLoaiSP;
+        public int MaLoaiSP { get=>_MaLoaiSP; set { _MaLoaiSP = value;OnPropertyChanged(); } }
 
-        string _NoiSanXuat;
-        public string NoiSanXuat { get => _NoiSanXuat; set { _NoiSanXuat = value; OnPropertyChanged(); } }
+        private string _TenLoaiSP;
+        public string TenLoaiSP { get =>_TenLoaiSP; set { _TenLoaiSP = value;OnPropertyChanged(); } }
 
-        int _MaNCC;
-        public int MaNCC { get => _MaNCC; set { _MaNCC = value; OnPropertyChanged(); } }
+        private string _NoiSanXuat;
+        public string NoiSanXuat { get=>_NoiSanXuat; set { _NoiSanXuat = value;OnPropertyChanged(); } }
 
-        bool _isDeleted;
-        public bool isDeleted { get => _isDeleted; set { _isDeleted = value; OnPropertyChanged(); } }
-        
-    
-        public virtual NhaCungCap NhaCungCap { get; set; }
+        private int _MaNCC;
+        public int MaNCC { get=>_MaNCC; set { _MaNCC = value;OnPropertyChanged(); } }
+
+        private bool _isDeleted;
+        public bool isDeleted { get=>_isDeleted; set { _isDeleted = value;OnPropertyChanged(); } }
+
+        private NhaCungCap _NhaCungCap;
+        public virtual NhaCungCap NhaCungCap { get=> _NhaCungCap; set { _NhaCungCap = value;OnPropertyChanged(); } }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SanPham> SanPhams { get; set; }
     }

@@ -71,6 +71,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LoaiSanPhamWindow.xaml.cs">
+      <DependentUpon>LoaiSanPhamWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\ChiaTietHoaDon.cs">
       <DependentUpon>ShoeShopDB.tt</DependentUpon>
     </Compile>
@@ -118,8 +121,13 @@
       <DependentUpon>SanPhamWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\LoaiSanPhamViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SanPhamViewModel.cs" />
+    <Page Include="LoaiSanPhamWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
