@@ -37,7 +37,8 @@ namespace ShoeShopApp.ViewModel
                   if (loginVM.IsLogin)
                   {
                       p.Show();
-                      load();
+                      int a = 1;
+                      load(a);
                   }
                   else
                   {
@@ -49,9 +50,12 @@ namespace ShoeShopApp.ViewModel
             //textContent = "Hello World!!! This text is loaded from database (table NhaCungCap): <" + nhaCungCaps[0].TenNCC + "> " +
             //    "Test connect successfully";
         }
-        void load()
+        void load(int a)
         {
-
+            List<NhaCungCap> nhaCungCaps = new List<NhaCungCap>();
+            nhaCungCaps = DataProvider.Ins.db.NhaCungCaps.ToList();
+            textContent = "Hello World!!! This text is loaded from database (table NhaCungCap): <" + nhaCungCaps[0].TenNCC + "> " +
+                "Test connect successfully"+a.ToString();
         }
     }
 }
