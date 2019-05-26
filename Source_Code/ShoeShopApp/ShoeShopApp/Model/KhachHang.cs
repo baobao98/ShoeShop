@@ -11,20 +11,26 @@ namespace ShoeShopApp.Model
 {
     using System;
     using System.Collections.Generic;
+    using ShoeShopApp.ViewModel;
     
-    public partial class KhachHang
+    public partial class KhachHang:BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KhachHang()
         {
             this.HoaDons = new HashSet<HoaDon>();
         }
-    
-        public int MaKH { get; set; }
-        public string TenKH { get; set; }
-        public string SDT { get; set; }
-        public string DiaChi { get; set; }
-        public bool isDeleted { get; set; }
+
+        private int _MaKH;
+        public int MaKH { get=>_MaKH; set { _MaKH = value;OnPropertyChanged(); } }
+        private string _TenKH;
+        public string TenKH { get=> _TenKH; set { _TenKH = value;OnPropertyChanged(); } }
+        private string _SDT;
+        public string SDT { get=> _SDT; set { _SDT = value;OnPropertyChanged(); } }
+        private string _DiaChi;
+        public string DiaChi { get=>_DiaChi; set { _DiaChi = value;OnPropertyChanged(); } }
+        private bool _isDeleted;
+        public bool isDeleted { get=> _isDeleted; set { _isDeleted = value; OnPropertyChanged(); } }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }
