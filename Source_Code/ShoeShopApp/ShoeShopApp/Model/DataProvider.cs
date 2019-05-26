@@ -26,6 +26,8 @@ namespace ShoeShopApp.Model
         }
 
         public ShoeShopEntities db { get; set; }
+        public object DB { get; internal set; }
+
         private DataProvider()
         {
             db = new ShoeShopEntities();
