@@ -31,7 +31,6 @@ namespace ShoeShopApp.Model
         public virtual DbSet<LoaiNV> LoaiNVs { get; set; }
         public virtual DbSet<LoaiSP> LoaiSPs { get; set; }
         public virtual DbSet<NhaCungCap> NhaCungCaps { get; set; }
-        public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
     }

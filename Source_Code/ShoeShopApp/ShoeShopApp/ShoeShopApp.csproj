@@ -98,9 +98,6 @@
     <Compile Include="Model\NhaCungCap.cs">
       <DependentUpon>ShoeShopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\NhanVien.cs">
-      <DependentUpon>ShoeShopDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\SanPham.cs">
       <DependentUpon>ShoeShopDB.tt</DependentUpon>
     </Compile>
