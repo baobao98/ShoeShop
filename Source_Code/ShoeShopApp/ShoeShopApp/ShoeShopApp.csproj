@@ -122,9 +122,13 @@
     <Compile Include="MyUserControl\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NhanVienWindow.xaml.cs">
+      <DependentUpon>NhanVienWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NhanVienViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -138,6 +142,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MyUserControl\ControlBarUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NhanVienWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,12 +188,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\ShoeShopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ShoeShopDB.Context.cs</LastGenOutput>
       <DependentUpon>ShoeShopDB.edmx</DependentUpon>
+      <LastGenOutput>ShoeShopDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\ShoeShopDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

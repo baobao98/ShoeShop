@@ -3,5 +3,7 @@
                      xmlns:viewmodel="clr-namespace:ShoeShopApp.ViewModel"
                     xmlns:local="clr-namespace:ShoeShopApp.ResourceXAML">
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
-    
+    <viewmodel:NhanVienViewModel x:Key="NhanVienVM"></viewmodel:NhanVienViewModel>
+
+
 </ResourceDictionary>

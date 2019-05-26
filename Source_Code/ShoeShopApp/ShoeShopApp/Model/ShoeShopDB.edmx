@@ -72,7 +72,7 @@
           <Property Name="SDT" Type="nvarchar" MaxLength="20" />
           <Property Name="NgaySinh" Type="date" />
           <Property Name="MaLoaiNV" Type="int" Nullable="false" />
-          <Property Name="TaiKhoan" Type="int" Nullable="false" />
+          <Property Name="TaiKhoan" Type="int" />
           <Property Name="isDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPham">
@@ -170,7 +170,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NhanVien_TaiKhoan_ID">
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoan">
@@ -247,7 +247,6 @@
           <EntitySet Name="LoaiNVs" EntityType="ShoeShopModel.LoaiNV" />
           <EntitySet Name="LoaiSPs" EntityType="ShoeShopModel.LoaiSP" />
           <EntitySet Name="NhaCungCaps" EntityType="ShoeShopModel.NhaCungCap" />
-          <EntitySet Name="NhanViens" EntityType="ShoeShopModel.NhanVien" />
           <EntitySet Name="SanPhams" EntityType="ShoeShopModel.SanPham" />
           <EntitySet Name="TaiKhoans" EntityType="ShoeShopModel.TaiKhoan" />
           <AssociationSet Name="FK_ChiaTietHoaDon_HoaDon1" Association="ShoeShopModel.FK_ChiaTietHoaDon_HoaDon1">
@@ -262,14 +261,6 @@
             <End Role="KhachHang" EntitySet="KhachHangs" />
             <End Role="HoaDon" EntitySet="HoaDons" />
           </AssociationSet>
-          <AssociationSet Name="FK_HoaDon_NhanVien" Association="ShoeShopModel.FK_HoaDon_NhanVien">
-            <End Role="NhanVien" EntitySet="NhanViens" />
-            <End Role="HoaDon" EntitySet="HoaDons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NhanVien_LoaiNV" Association="ShoeShopModel.FK_NhanVien_LoaiNV">
-            <End Role="LoaiNV" EntitySet="LoaiNVs" />
-            <End Role="NhanVien" EntitySet="NhanViens" />
-          </AssociationSet>
           <AssociationSet Name="FK_LoaiSP_NhaCungCap" Association="ShoeShopModel.FK_LoaiSP_NhaCungCap">
             <End Role="NhaCungCap" EntitySet="NhaCungCaps" />
             <End Role="LoaiSP" EntitySet="LoaiSPs" />
@@ -277,6 +268,15 @@
           <AssociationSet Name="FK_SanPham_LoaiSP" Association="ShoeShopModel.FK_SanPham_LoaiSP">
             <End Role="LoaiSP" EntitySet="LoaiSPs" />
             <End Role="SanPham" EntitySet="SanPhams" />
+          </AssociationSet>
+          <EntitySet Name="NhanViens" EntityType="ShoeShopModel.NhanVien" />
+          <AssociationSet Name="FK_HoaDon_NhanVien" Association="ShoeShopModel.FK_HoaDon_NhanVien">
+            <End Role="NhanVien" EntitySet="NhanViens" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhanVien_LoaiNV" Association="ShoeShopModel.FK_NhanVien_LoaiNV">
+            <End Role="LoaiNV" EntitySet="LoaiNVs" />
+            <End Role="NhanVien" EntitySet="NhanViens" />
           </AssociationSet>
           <AssociationSet Name="FK_NhanVien_TaiKhoan_ID" Association="ShoeShopModel.FK_NhanVien_TaiKhoan_ID">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
@@ -349,23 +349,6 @@
           <Property Name="isDeleted" Type="Boolean" />
           <NavigationProperty Name="LoaiSPs" Relationship="ShoeShopModel.FK_LoaiSP_NhaCungCap" FromRole="NhaCungCap" ToRole="LoaiSP" />
         </EntityType>
-        <EntityType Name="NhanVien">
-          <Key>
-            <PropertyRef Name="MaNV" />
-          </Key>
-          <Property Name="MaNV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HoVaTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CMND" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
-          <Property Name="MaLoaiNV" Type="Int32" Nullable="false" />
-          <Property Name="TaiKhoan" Type="Int32" Nullable="false" />
-          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="HoaDons" Relationship="ShoeShopModel.FK_HoaDon_NhanVien" FromRole="NhanVien" ToRole="HoaDon" />
-          <NavigationProperty Name="LoaiNV" Relationship="ShoeShopModel.FK_NhanVien_LoaiNV" FromRole="NhanVien" ToRole="LoaiNV" />
-          <NavigationProperty Name="TaiKhoan1" Relationship="ShoeShopModel.FK_NhanVien_TaiKhoan_ID" FromRole="NhanVien" ToRole="TaiKhoan" />
-        </EntityType>
         <EntityType Name="SanPham">
           <Key>
             <PropertyRef Name="MaSP" />
@@ -427,30 +410,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HoaDon_NhanVien">
-          <End Type="ShoeShopModel.NhanVien" Role="NhanVien" Multiplicity="0..1" />
-          <End Type="ShoeShopModel.HoaDon" Role="HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhanVien">
-              <PropertyRef Name="MaNV" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="MaNV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NhanVien_LoaiNV">
-          <End Type="ShoeShopModel.LoaiNV" Role="LoaiNV" Multiplicity="1" />
-          <End Type="ShoeShopModel.NhanVien" Role="NhanVien" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LoaiNV">
-              <PropertyRef Name="MaLoaiNV" />
-            </Principal>
-            <Dependent Role="NhanVien">
-              <PropertyRef Name="MaLoaiNV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_LoaiSP_NhaCungCap">
           <End Type="ShoeShopModel.NhaCungCap" Role="NhaCungCap" Multiplicity="1" />
           <End Type="ShoeShopModel.LoaiSP" Role="LoaiSP" Multiplicity="*" />
@@ -475,8 +434,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="MaNV" />
+          </Key>
+          <Property Name="MaNV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoVaTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CMND" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="MaLoaiNV" Type="Int32" Nullable="false" />
+          <Property Name="TaiKhoan" Type="Int32" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="HoaDons" Relationship="ShoeShopModel.FK_HoaDon_NhanVien" FromRole="NhanVien" ToRole="HoaDon" />
+          <NavigationProperty Name="LoaiNV" Relationship="ShoeShopModel.FK_NhanVien_LoaiNV" FromRole="NhanVien" ToRole="LoaiNV" />
+          <NavigationProperty Name="TaiKhoan1" Relationship="ShoeShopModel.FK_NhanVien_TaiKhoan_ID" FromRole="NhanVien" ToRole="TaiKhoan" />
+        </EntityType>
+        <Association Name="FK_HoaDon_NhanVien">
+          <End Type="ShoeShopModel.NhanVien" Role="NhanVien" Multiplicity="0..1" />
+          <End Type="ShoeShopModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhanVien_LoaiNV">
+          <End Type="ShoeShopModel.LoaiNV" Role="LoaiNV" Multiplicity="1" />
+          <End Type="ShoeShopModel.NhanVien" Role="NhanVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiNV">
+              <PropertyRef Name="MaLoaiNV" />
+            </Principal>
+            <Dependent Role="NhanVien">
+              <PropertyRef Name="MaLoaiNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NhanVien_TaiKhoan_ID">
-          <End Type="ShoeShopModel.TaiKhoan" Role="TaiKhoan" Multiplicity="1" />
+          <End Type="ShoeShopModel.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1" />
           <End Type="ShoeShopModel.NhanVien" Role="NhanVien" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoan">
@@ -554,21 +554,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NhanViens">
-            <EntityTypeMapping TypeName="ShoeShopModel.NhanVien">
-              <MappingFragment StoreEntitySet="NhanVien">
-                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
-                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
-                <ScalarProperty Name="MaLoaiNV" ColumnName="MaLoaiNV" />
-                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="CMND" ColumnName="CMND" />
-                <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
-                <ScalarProperty Name="MaNV" ColumnName="MaNV" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SanPhams">
             <EntityTypeMapping TypeName="ShoeShopModel.SanPham">
               <MappingFragment StoreEntitySet="SanPham">
@@ -590,6 +575,21 @@
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="TenDN" ColumnName="TenDN" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhanViens">
+            <EntityTypeMapping TypeName="ShoeShopModel.NhanVien">
+              <MappingFragment StoreEntitySet="NhanVien">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+                <ScalarProperty Name="MaLoaiNV" ColumnName="MaLoaiNV" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
+                <ScalarProperty Name="MaNV" ColumnName="MaNV" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
