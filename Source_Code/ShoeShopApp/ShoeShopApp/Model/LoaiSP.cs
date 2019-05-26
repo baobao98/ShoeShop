@@ -9,22 +9,32 @@
 
 namespace ShoeShopApp.Model
 {
+    using ShoeShopApp.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class LoaiSP
+    public partial class LoaiSP:BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LoaiSP()
         {
             this.SanPhams = new HashSet<SanPham>();
         }
-    
-        public int MaLoaiSP { get; set; }
-        public string TenLoaiSP { get; set; }
-        public string NoiSanXuat { get; set; }
-        public int MaNCC { get; set; }
-        public bool isDeleted { get; set; }
+        int _MaLoaiSP;
+        public int MaLoaiSP { get => _MaLoaiSP; set { _MaLoaiSP = value; OnPropertyChanged(); } }
+        
+        string _TenLoaiSP;
+        public string TenLoaiSP { get => _TenLoaiSP; set { _TenLoaiSP = value; OnPropertyChanged(); } }
+
+        string _NoiSanXuat;
+        public string NoiSanXuat { get => _NoiSanXuat; set { _NoiSanXuat = value; OnPropertyChanged(); } }
+
+        int _MaNCC;
+        public int MaNCC { get => _MaNCC; set { _MaNCC = value; OnPropertyChanged(); } }
+
+        bool _isDeleted;
+        public bool isDeleted { get => _isDeleted; set { _isDeleted = value; OnPropertyChanged(); } }
+        
     
         public virtual NhaCungCap NhaCungCap { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
