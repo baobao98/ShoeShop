@@ -19,6 +19,7 @@ namespace ShoeShopApp.ViewModel
         private string _Password;
         public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
 
+        public int IDNV { get; set; }
         public ICommand CloseCommand { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
@@ -45,11 +46,12 @@ namespace ShoeShopApp.ViewModel
              */
 
             //string passEncode = MD5Hash(Base64Encode(Password));
-            string pass = Password;
-            int accCount = DataProvider.Ins.db.TaiKhoans.Where(x => x.TenDN == UserName && x.MatKhau == pass).Count();
+            int idtk = DataProvider.Ins.db.TaiKhoans.Where(x => x.TenDN == UserName && x.MatKhau == Password).SingleOrDefault().ID;       
+            int accCount = DataProvider.Ins.db.TaiKhoans.Where(x => x.TenDN == UserName && x.MatKhau == Password).Count();
             if (accCount > 0)
             {
                 IsLogin = true;
+                IDNV = DataProvider.Ins.db.NhanViens.Where(x => x.TaiKhoan == idtk).SingleOrDefault().MaNV;
                 p.Close();
             }
             else

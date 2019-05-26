@@ -122,9 +122,13 @@
     <Compile Include="Model\TaiKhoan.cs">
       <DependentUpon>ShoeShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="SuplierWindow.xaml.cs">
+      <DependentUpon>SuplierWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SuplierViewModel.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +146,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ResourceXAML\MainResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SuplierWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
