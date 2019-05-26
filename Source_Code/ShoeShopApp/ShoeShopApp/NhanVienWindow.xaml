@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:ShoeShopApp"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:ShoeShopApp.MyUserControl"
-        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -60,12 +59,17 @@
                     <DatePicker Text="{Binding NgaySinh,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="5" materialDesign:HintAssist.Hint="Ngày Sinh" />
                 </StackPanel>
 
-                <StackPanel Grid.Column="3" Margin="5">
+                    <StackPanel Grid.Column="3" Margin="5">
                         <ComboBox ItemsSource="{Binding LoaiNV,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="TenLoaiNV" 
                               SelectedItem="{Binding SelectedLoaiNV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                               materialDesign:HintAssist.Hint="Loại Nhân Viên"  IsEditable="True"
-                              Margin="5" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
-                </StackPanel>
+                              Margin="5 -9 5 5" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+
+                        </ComboBox>
+
+                        <TextBox Text="{Binding TenDN,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="{Binding pEnable}" Margin="5" materialDesign:HintAssist.Hint="Tên Đăng Nhập"></TextBox>
+                        <TextBox Text="{Binding MatKhau,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="{Binding pEnable}" Margin="5" materialDesign:HintAssist.Hint="Mật Khẩu"></TextBox>
+                    </StackPanel>
                 </Grid>
             </materialDesign:Card>
             

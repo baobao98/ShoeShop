@@ -16,6 +16,9 @@ namespace ShoeShopApp.ViewModel
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
+        private bool _pEnable = false;
+        public bool pEnable { get => _pEnable; set { _pEnable = value; OnPropertyChanged(); } }
+
         private ObservableCollection<NhanVien> _List;
         public ObservableCollection<NhanVien> List { get => _List; set { _List = value; OnPropertyChanged(); } }
 
@@ -31,6 +34,7 @@ namespace ShoeShopApp.ViewModel
                     NgaySinh = SelectedItem.NgaySinh;
                     DiaChi = SelectedItem.DiaChi;
                     SelectedLoaiNV = SelectedItem.LoaiNV;
+                    pEnable = false;
                 } } }
 
         private string _HoVaTen;
@@ -48,6 +52,12 @@ namespace ShoeShopApp.ViewModel
         private string _DiaChi;
         public string DiaChi { get => _DiaChi; set { _DiaChi = value; OnPropertyChanged(); } }
 
+        private string _TenDN;
+        public string TenDN { get => _TenDN; set { _TenDN = value; OnPropertyChanged(); } }
+
+        private string _MatKhau;
+        public string MatKhau { get => _MatKhau; set { _MatKhau = value; OnPropertyChanged(); } }
+
         //Nhấn vào binding lên ô trên combobox
         private LoaiNV _SelectedLoaiNV;
         public LoaiNV SelectedLoaiNV
@@ -58,15 +68,14 @@ namespace ShoeShopApp.ViewModel
             {
                 _SelectedLoaiNV = value;
                 OnPropertyChanged();
-                //if (_SelectedLoaiNV.TenLoaiNV == "Thu Ngân")
-                //{
-                //    System.Windows.Controls.Button btn = new System.Windows.Controls.Button();
-
-                //    btn.Content = "test";
-
-                //    System.Windows.Controls.StackPanel sp = new System.Windows.Controls.StackPanel();
-                //    sp.Children.Add(btn);
-                //}
+                if (_SelectedLoaiNV.TenLoaiNV == "Thu Ngân")
+                {
+                    pEnable = true;
+                }
+                else
+                {
+                    pEnable = false;
+                }
             }
         }
 
@@ -99,6 +108,18 @@ namespace ShoeShopApp.ViewModel
                       MaLoaiNV = SelectedLoaiNV.MaLoaiNV,
                       isDeleted = false
                   };
+
+                  if (!string.IsNullOrEmpty(TenDN) && !string.IsNullOrEmpty(MatKhau))
+                  {
+                      var acc = new TaiKhoan()
+                      {
+                          TenDN = TenDN,
+                          MatKhau = MatKhau,
+                          isDeleted = false
+                      };
+
+                      DataProvider.Ins.db.TaiKhoans.Add(acc);
+                  }
                   DataProvider.Ins.db.NhanViens.Add(nv);
                   DataProvider.Ins.db.SaveChanges();
                   List.Add(nv);
