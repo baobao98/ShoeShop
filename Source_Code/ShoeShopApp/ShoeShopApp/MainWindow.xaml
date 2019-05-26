@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:ShoeShopApp"
         mc:Ignorable="d"
         
+        xmlns:uc="clr-namespace:ShoeShopApp.MyUserControl"
+        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -14,18 +16,35 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        ResizeMode="NoResize"
-        WindowStyle="None"
-        WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource MainVM}"
         
-        DataContext="{StaticResource MainVM}"   
-        Title="MainWindow" Height="450" Width="800">
+        ResizeMode="NoResize"
+        WindowStyle="None"        
+        WindowStartupLocation="CenterScreen"
+        Name="mainWindows"
+        
+        Title="Main Window" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="{Binding textContent}" x:Name="A"
+        <!--Define & Layout-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--ControlBal-->
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindows}"></uc:ControlBarUC>
+        </Grid>
+        
+        <!--Main-->
+        <Grid Grid.Row="1">
+            <TextBlock Text="{Binding textContent}" x:Name="A"
                    VerticalAlignment="Center"  TextAlignment="Center"
                    Height="200" FontSize="40"
                    Margin="0,50,0,45" Foreground="Gray"
                    TextWrapping="WrapWithOverflow">
-        </TextBlock>
+            </TextBlock>
+        </Grid>
+        
     </Grid>
 </Window>
