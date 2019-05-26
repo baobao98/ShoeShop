@@ -13,9 +13,8 @@ namespace ShoeShopApp.ViewModel
     {
         //Command 
         public ICommand AddCommand { get; set; }
-        //public ICommand EditCommand { get; set; }
-        //public ICommand DeleteCommand { get; set; }
-        //public ICommand OKCommand { get; set; }
+        public ICommand EditCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         private ObservableCollection<NhanVien> _List;
         public ObservableCollection<NhanVien> List { get => _List; set { _List = value; OnPropertyChanged(); } }
@@ -23,14 +22,15 @@ namespace ShoeShopApp.ViewModel
         private ObservableCollection<LoaiNV> _LoaiNV;
         public ObservableCollection<LoaiNV> LoaiNV { get => _LoaiNV; set { _LoaiNV = value; OnPropertyChanged(); } }
 
-        private NhanVien _SeletedItem;
-        public NhanVien SeletedItem { get => _SeletedItem; set { _SeletedItem = value; OnPropertyChanged();
-                if (SeletedItem != null) {
-                    HoVaTen = SeletedItem.HoVaTen;
-                    CMND = SeletedItem.CMND;
-                    SDT = SeletedItem.SDT;
-                    NgaySinh = SeletedItem.NgaySinh;
-                    DiaChi = SeletedItem.DiaChi;
+        private NhanVien _SelectedItem;
+        public NhanVien SelectedItem { get => _SelectedItem; set { _SelectedItem = value; OnPropertyChanged();
+                if (_SelectedItem != null) {
+                    HoVaTen = SelectedItem.HoVaTen;
+                    CMND = SelectedItem.CMND;
+                    SDT = SelectedItem.SDT;
+                    NgaySinh = SelectedItem.NgaySinh;
+                    DiaChi = SelectedItem.DiaChi;
+                    SelectedLoaiNV = SelectedItem.LoaiNV;
                 } } }
 
         private string _HoVaTen;
@@ -58,6 +58,15 @@ namespace ShoeShopApp.ViewModel
             {
                 _SelectedLoaiNV = value;
                 OnPropertyChanged();
+                //if (_SelectedLoaiNV.TenLoaiNV == "Thu Ngân")
+                //{
+                //    System.Windows.Controls.Button btn = new System.Windows.Controls.Button();
+
+                //    btn.Content = "test";
+
+                //    System.Windows.Controls.StackPanel sp = new System.Windows.Controls.StackPanel();
+                //    sp.Children.Add(btn);
+                //}
             }
         }
 
@@ -80,42 +89,74 @@ namespace ShoeShopApp.ViewModel
               },
               (p) =>
               {
-                  DataProvider.Ins.db.NhanViens.Add(new NhanVien()
+                  var nv = new NhanVien()
                   {
                       HoVaTen = HoVaTen,
                       CMND = CMND,
                       DiaChi = DiaChi,
                       SDT = SDT,
                       NgaySinh = NgaySinh,
+                      MaLoaiNV = SelectedLoaiNV.MaLoaiNV,
                       isDeleted = false
-                  });
-
+                  };
+                  DataProvider.Ins.db.NhanViens.Add(nv);
+                  DataProvider.Ins.db.SaveChanges();
+                  List.Add(nv);
               }
               );
 
-            //OKCommand = new RelayCommand<object>(
-            //   (p) =>
-            //   {
-            //       if (SelectedLoaiNV != null)
-            //           return true;
-            //       return false;
-            //   },
-            //   p =>
-            //   {
-            //       int MaNhanvienCurrent = 1;
-            //       int Maloainv = SelectedLoaiNV.MaLoaiNV;
-            //       NhanVien nv = new NhanVien { MaNV = MaNhanvienCurrent, NgaySinh = NgaySinh, isDeleted = false };
-            //       DataProvider.Ins.db.NhanViens.Add(nv);
-            //       DataProvider.Ins.db.SaveChanges();// cập nhật trong database
-            //       List.Add(nv);// cập nhật trên list
-            //       // add account
-            //       //HoaDon hoaDonNew = new HoaDon();
-            //       //hoaDonNew = DataProvider.Ins.db.HoaDons.Where(hd => hd.MaKH == Makh && hd.MaNV == MaNhanvienCurrent).SingleOrDefault();
-            //       //ChiaTietHoaDon chiaTietHoaDon = new ChiaTietHoaDon { MaHD = hoaDonNew.MaHD, MaSP = SelectedSanPham.MaSP, SoLuong = SoLuong };
-            //       //DataProvider.Ins.db.ChiaTietHoaDons.Add(chiaTietHoaDon);
-            //       //DataProvider.Ins.db.SaveChanges();// cập nhật trong database
-            //   }
-            //   );
+            EditCommand = new RelayCommand<object>(
+              (p) =>
+              {
+                  if (string.IsNullOrEmpty(HoVaTen) || SelectedItem == null || SelectedLoaiNV == null)
+                      return false;
+
+                  var displaylist = DataProvider.Ins.db.NhanViens.Where(x => x.MaNV == SelectedItem.MaNV);
+
+                  if (displaylist != null && displaylist.Count() != 0)
+                  {
+                      return true;
+                  }
+                  return false;
+              },
+              (p) =>
+              {
+                  var nv = DataProvider.Ins.db.NhanViens.Where(x => x.MaNV == SelectedItem.MaNV).SingleOrDefault();
+                  nv.HoVaTen = HoVaTen;
+                  nv.CMND = CMND;
+                  nv.DiaChi = DiaChi;
+                  nv.SDT = SDT;
+                  nv.NgaySinh = NgaySinh;
+                  nv.MaLoaiNV = SelectedLoaiNV.MaLoaiNV;
+
+                  DataProvider.Ins.db.SaveChanges();
+
+                  SelectedItem.HoVaTen = HoVaTen;
+                  SelectedItem.CMND = CMND;
+                  SelectedItem.DiaChi = DiaChi;
+                  SelectedItem.SDT = SDT;
+                  SelectedItem.NgaySinh = NgaySinh;
+                  SelectedItem.LoaiNV = SelectedLoaiNV;
+              }
+              );
+
+            DeleteCommand = new RelayCommand<object>(
+              (p) =>
+              {
+                  if (SelectedItem == null)
+                      return false;
+
+                  return true;
+              },
+              (p) =>
+              {
+                  var nv = DataProvider.Ins.db.NhanViens.Where(x => x.MaNV == SelectedItem.MaNV).SingleOrDefault();
+                  nv.isDeleted = true;
+
+                  DataProvider.Ins.db.SaveChanges();
+                  List.Remove(nv);
+              }
+              );
         }
     }
 }

@@ -79,14 +79,14 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0" Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
-                    <Button Grid.Column="1" Command="{Binding OKCommand}" Content="Xác nhận" Margin="5" Width="100"></Button>
-                    <Button Grid.Column="2" Command="{Binding PrintCommand}" Content="Xuất" Margin="5" Width="100"></Button>
+                    <Button Grid.Column="1" Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
+                    <Button Grid.Column="2" Command="{Binding DeleteCommand}" Content="Xoá" Margin="5" Width="100"></Button>
                 </Grid>
             </materialDesign:Card>
 
             <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SeletedItem, Mode=OneWayToSource}">
+                    <ListView ItemsSource="{Binding List, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Mã NV" DisplayMemberBinding="{Binding MaNV}"></GridViewColumn>
