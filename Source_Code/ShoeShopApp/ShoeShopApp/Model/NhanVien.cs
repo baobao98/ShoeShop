@@ -12,20 +12,27 @@ namespace ShoeShopApp.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class LoaiNV
+    public partial class NhanVien
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LoaiNV()
+        public NhanVien()
         {
-            this.NhanViens = new HashSet<NhanVien>();
+            this.HoaDons = new HashSet<HoaDon>();
         }
     
+        public int MaNV { get; set; }
+        public string HoVaTen { get; set; }
+        public string CMND { get; set; }
+        public string DiaChi { get; set; }
+        public string SDT { get; set; }
+        public Nullable<System.DateTime> NgaySinh { get; set; }
         public int MaLoaiNV { get; set; }
-        public string TenLoaiNV { get; set; }
-        public Nullable<decimal> TienThuong { get; set; }
+        public Nullable<int> TaiKhoan { get; set; }
         public bool isDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NhanVien> NhanViens { get; set; }
+        public virtual ICollection<HoaDon> HoaDons { get; set; }
+        public virtual LoaiNV LoaiNV { get; set; }
+        public virtual TaiKhoan TaiKhoan1 { get; set; }
     }
 }

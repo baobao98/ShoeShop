@@ -18,6 +18,10 @@
         <AssociationConnector Association="ShoeShopModel.FK_HoaDon_KhachHang" />
         <AssociationConnector Association="ShoeShopModel.FK_LoaiSP_NhaCungCap" />
         <AssociationConnector Association="ShoeShopModel.FK_SanPham_LoaiSP" />
+        <EntityTypeShape EntityType="ShoeShopModel.NhanVien" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="ShoeShopModel.FK_HoaDon_NhanVien" />
+        <AssociationConnector Association="ShoeShopModel.FK_NhanVien_LoaiNV" />
+        <AssociationConnector Association="ShoeShopModel.FK_NhanVien_TaiKhoan_ID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

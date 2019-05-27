@@ -14,9 +14,18 @@ namespace ShoeShopApp.Model
     
     public partial class TaiKhoan
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TaiKhoan()
+        {
+            this.NhanViens = new HashSet<NhanVien>();
+        }
+    
         public int ID { get; set; }
         public string TenDN { get; set; }
         public string MatKhau { get; set; }
         public bool isDeleted { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NhanVien> NhanViens { get; set; }
     }
 }
