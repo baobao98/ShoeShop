@@ -77,8 +77,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdduserWindow.xaml.cs">
+      <DependentUpon>AdduserWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KhachHangWindow.xaml.cs">
       <DependentUpon>KhachHangWindow.xaml</DependentUpon>
     </Compile>
@@ -137,6 +141,12 @@
     <Compile Include="UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\SuplierViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
+    <Page Include="AdduserWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,7 +157,9 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\KhachHangViewModel.cs" />
     <Compile Include="ViewModel\LoaiSanPhamViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\RegistationViewModel.cs" />
     <Compile Include="ViewModel\SanPhamViewModel.cs" />
     <Page Include="KhachHangWindow.xaml">
       <SubType>Designer</SubType>
