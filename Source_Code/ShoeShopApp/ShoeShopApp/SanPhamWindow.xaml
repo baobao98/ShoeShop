@@ -62,6 +62,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <materialDesign:Card Grid.Row="0" Margin="5">
                     <Grid>
@@ -74,6 +75,13 @@
                         <TextBox Text="{Binding SoLuong, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5" materialDesign:HintAssist.Hint="Số lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     </Grid>
                 </materialDesign:Card>
+                <materialDesign:Card Grid.Row="2" Margin="5">
+                    <Grid>
+                        <Button FontSize="20" Command="{Binding ImageCommand}" x:Name="BrowseButton" Content="Browse" HorizontalAlignment="Left"   
+                ></Button>
+                    </Grid>
+                </materialDesign:Card>
+                
             </Grid>
             <materialDesign:Card Grid.Column="2" Margin="5">
                 <Image x:Name="img" Source="{Binding Anh}"></Image>

@@ -6,11 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ShoeShopApp.Model;
+using System.IO;
 
 namespace ShoeShopApp.ViewModel
 {
     public class SanPhamViewModel:BaseViewModel
     {
+        public string source;
         private ObservableCollection<SanPham> _List;
         public ObservableCollection<SanPham> List { get => _List; set { _List = value; OnPropertyChanged(); } }
 
@@ -67,6 +69,7 @@ namespace ShoeShopApp.ViewModel
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand ImageCommand { get; set; }
 
         public SanPhamViewModel()
         {
@@ -83,7 +86,24 @@ namespace ShoeShopApp.ViewModel
 
             }, (p) =>
             {
-                var Sanpham = new SanPham() { TenSP = TenSP, MaLoaiSP = SelectedLoaiSP.MaLoaiSP, Gia = Gia, Mau = Mau, SoLuong = SoLuong};
+                //-----------------get the url path of project
+                // This will get the current WORKING directory (i.e. \bin\Debug)
+                string workingDirectory = Environment.CurrentDirectory;
+                // or: Directory.GetCurrentDirectory() gives the same result
+
+                // This will get the current PROJECT directory
+                string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
+
+                // file name to save to database if you want
+                string FileName = Path.GetFileName(source);
+                // path to save file in project
+                string dest = projectDirectory + @"\Images\" + FileName;
+                // copy file to our project [note: still note check same file]
+                File.Copy(source, dest);
+
+                string anh = @"Images\" + FileName;
+
+                var Sanpham = new SanPham() { TenSP = TenSP, MaLoaiSP = SelectedLoaiSP.MaLoaiSP, Gia = Gia, Mau = Mau, SoLuong = SoLuong, Anh=anh};
 
                 DataProvider.Ins.db.SanPhams.Add(Sanpham);
                 DataProvider.Ins.db.SaveChanges();
@@ -136,6 +156,34 @@ namespace ShoeShopApp.ViewModel
                 List.Remove(SelectedItem);
                 //SelectedItem.TenSP = TenSP;
             });
+
+            ImageCommand = new RelayCommand<object>(
+                (p) =>
+                {
+                    return true;
+                },
+                (p) =>
+                {
+                    Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+                    // Set filter for file extension and default file extension 
+                    dlg.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*";
+
+
+                    // Display OpenFileDialog by calling ShowDialog method 
+                    Nullable<bool> result = dlg.ShowDialog();
+
+
+                    // Get the selected file name and display in a TextBox 
+                    if (result == true)
+                    {
+                        //---------------- Open document -----------------------
+                        source = dlg.FileName;
+                        Anh = source;
+                    }
+
+                }
+                );
 
         }
     }
