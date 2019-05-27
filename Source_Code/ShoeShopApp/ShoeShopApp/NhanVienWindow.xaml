@@ -60,15 +60,30 @@
                 </StackPanel>
 
                     <StackPanel Grid.Column="3" Margin="5">
-                        <ComboBox ItemsSource="{Binding LoaiNV,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="TenLoaiNV" 
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <ComboBox ItemsSource="{Binding LoaiNV,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="TenLoaiNV" 
                               SelectedItem="{Binding SelectedLoaiNV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                               materialDesign:HintAssist.Hint="Loại Nhân Viên"  IsEditable="True"
                               Margin="5 -9 5 5" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                </ComboBox>
+                            </Grid>
 
-                        </ComboBox>
+                            <Grid Grid.Column="1">
+                                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                                        ToolTip="Resource name: MaterialDesignRaisedAccentButton">
+                                    Loại NV
+                                </Button>
+                            </Grid>
+                        </Grid>
 
-                        <TextBox Text="{Binding TenDN,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="{Binding pEnable}" Margin="5" materialDesign:HintAssist.Hint="Tên Đăng Nhập"></TextBox>
-                        <TextBox Text="{Binding MatKhau,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="{Binding pEnable}" Margin="5" materialDesign:HintAssist.Hint="Mật Khẩu"></TextBox>
+                        <TextBox Visibility="{Binding pVisible}" Text="{Binding TenDN,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="{Binding pEnable}" Margin="5" materialDesign:HintAssist.Hint="Tên Đăng Nhập"></TextBox>
+                        <TextBox Visibility="{Binding pVisible}" Text="{Binding MatKhau,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="{Binding pEnable}" Margin="5" materialDesign:HintAssist.Hint="Mật Khẩu"></TextBox>
                     </StackPanel>
                 </Grid>
             </materialDesign:Card>

@@ -19,6 +19,9 @@ namespace ShoeShopApp.ViewModel
         private bool _pEnable = false;
         public bool pEnable { get => _pEnable; set { _pEnable = value; OnPropertyChanged(); } }
 
+        private string _pVisible = "Hidden";
+        public string pVisible { get => _pVisible; set { _pVisible = value; OnPropertyChanged(); } }
+
         private ObservableCollection<NhanVien> _List;
         public ObservableCollection<NhanVien> List { get => _List; set { _List = value; OnPropertyChanged(); } }
 
@@ -35,6 +38,7 @@ namespace ShoeShopApp.ViewModel
                     DiaChi = SelectedItem.DiaChi;
                     SelectedLoaiNV = SelectedItem.LoaiNV;
                     pEnable = false;
+                    pVisible = "hidden";
                 } } }
 
         private string _HoVaTen;
@@ -71,10 +75,14 @@ namespace ShoeShopApp.ViewModel
                 if (_SelectedLoaiNV.TenLoaiNV == "Thu Ngân")
                 {
                     pEnable = true;
+                    pVisible = "visible";
+                    TenDN = null;
+                    MatKhau = null;
                 }
                 else
                 {
                     pEnable = false;
+                    pVisible = "hidden";
                 }
             }
         }
@@ -111,14 +119,25 @@ namespace ShoeShopApp.ViewModel
 
                   if (!string.IsNullOrEmpty(TenDN) && !string.IsNullOrEmpty(MatKhau))
                   {
-                      var acc = new TaiKhoan()
+                      if (DataProvider.Ins.db.TaiKhoans.SingleOrDefault(x => x.TenDN == TenDN) != null)
                       {
-                          TenDN = TenDN,
-                          MatKhau = MatKhau,
-                          isDeleted = false
-                      };
+                          pEnable = false;
+                          pVisible = "visible";
+                          TenDN = "Tên đăng nhập không có sẵn";
+                          MatKhau = "Hãy chọn tên khác";
+                      }
+                      else
+                      {
+                          var acc = new TaiKhoan()
+                          {
+                              TenDN = TenDN,
+                              MatKhau = MatKhau,
+                              isDeleted = false
+                          };
 
-                      DataProvider.Ins.db.TaiKhoans.Add(acc);
+                          DataProvider.Ins.db.TaiKhoans.Add(acc);
+                      }
+                      
                   }
                   DataProvider.Ins.db.NhanViens.Add(nv);
                   DataProvider.Ins.db.SaveChanges();
@@ -158,6 +177,8 @@ namespace ShoeShopApp.ViewModel
                   SelectedItem.SDT = SDT;
                   SelectedItem.NgaySinh = NgaySinh;
                   SelectedItem.LoaiNV = SelectedLoaiNV;
+                  pEnable = false;
+                  pVisible = "hidden";
               }
               );
 

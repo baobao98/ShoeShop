@@ -23,7 +23,7 @@
         WindowStartupLocation="CenterScreen"
         Name="mainWindows"
         
-        Title="Main Window" Height="auto" Width="auto">
+        Title="Main Window" Height="550" Width="auto">
     <Grid>
         <!--Define & Layout-->
         <Grid.RowDefinitions>
@@ -45,7 +45,7 @@
             </Grid.RowDefinitions>
 
             <!--menu-->
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" Margin="5">
                 <materialDesign:ColorZone 
                     Mode="PrimaryDark" CornerRadius="3" 
                     materialDesign:ShadowAssist.ShadowDepth="Depth3">
@@ -55,22 +55,37 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.Resources>
                             <Style TargetType="Button" >
                                 <Setter Property="Margin" Value="2 4 2 4"></Setter>
                                 <Setter Property="Background" Value="Transparent"></Setter>
+                                <Setter Property="Opacity" Value="0.5" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}" 
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                                <ContentPresenter HorizontalAlignment="Center" 
+                                                                  VerticalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Opacity" Value="3" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
 
                             <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="LightGray"></Setter>
+                                <Setter Property="Foreground" Value="White"></Setter>
                             </Style>
                         </Grid.Resources>
 
-                        <Button Grid.Column="0" ToolTip="Nhập Kho">
+                        <Button Grid.Column="0" ToolTip="Quản lí Sản Phẩm">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
@@ -78,7 +93,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.Row="0">
-                                    <TextBlock HorizontalAlignment="Center" Text="Nhập Kho"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Text="Quản lí Sản Phẩm"></TextBlock>
                                 </Grid>
 
                                 <Grid Grid.Row="1">
@@ -87,7 +102,7 @@
                             </Grid>
                         </Button>
 
-                        <Button Grid.Column="1" ToolTip="Xuất Kho">
+                        <Button Grid.Column="1" ToolTip="Quản lí Hoá Đơn">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
@@ -95,7 +110,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.Row="0">
-                                    <TextBlock HorizontalAlignment="Center" Text="Xuất Kho"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Text="Quản lí Hoá Đơn"></TextBlock>
                                 </Grid>
 
                                 <Grid Grid.Row="1">
@@ -104,7 +119,7 @@
                             </Grid>
                         </Button>
 
-                        <Button Grid.Column="2" ToolTip="Vật Tư">
+                        <Button Grid.Column="2" ToolTip="Quản lí Nhân Viên">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
@@ -112,58 +127,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.Row="0">
-                                    <TextBlock HorizontalAlignment="Center" Text="Vật Tư"></TextBlock>
-                                </Grid>
-
-                                <Grid Grid.Row="1">
-                                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="DnsOutline" Height="25" Width="25" />
-                                </Grid>
-                            </Grid>
-                        </Button>
-
-                        <Button Command="{Binding UnitCommand}" Grid.Column="3" ToolTip="Đơn Vị Đo">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0">
-                                    <TextBlock HorizontalAlignment="Center" Text="Đơn Vị Đo"></TextBlock>
-                                </Grid>
-
-                                <Grid Grid.Row="1">
-                                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Altimeter" Height="25" Width="25" />
-                                </Grid>
-                            </Grid>
-                        </Button>
-
-                        <Button Grid.Column="4" ToolTip="Nhà Cung Cấp">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0">
-                                    <TextBlock HorizontalAlignment="Center" Text="Nhà Cung Cấp"></TextBlock>
-                                </Grid>
-
-                                <Grid Grid.Row="1">
-                                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Factory" Height="25" Width="25" />
-                                </Grid>
-                            </Grid>
-                        </Button>
-
-                        <Button Grid.Column="5" ToolTip="Khách Hàng">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0">
-                                    <TextBlock HorizontalAlignment="Center" Text="Khách Hàng"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Text="Quản lí Nhân Viên"></TextBlock>
                                 </Grid>
 
                                 <Grid Grid.Row="1">
@@ -172,7 +136,7 @@
                             </Grid>
                         </Button>
 
-                        <Button Grid.Column="6" ToolTip="Người Dùng">
+                        <Button Grid.Column="3" ToolTip="Quản lí Khách Hàng">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
@@ -180,7 +144,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.Row="0">
-                                    <TextBlock HorizontalAlignment="Center" Text="Người Dùng"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Text="Quản lí Khách Hàng"></TextBlock>
                                 </Grid>
 
                                 <Grid Grid.Row="1">
@@ -214,33 +178,26 @@
 
                             <Grid Grid.Row="0" Margin="5">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <Grid Grid.Column="0">
+                                <Grid Grid.Column="0" Margin="5">
                                     <DatePicker 
-                                        Width="150"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
                                         materialDesign:HintAssist.Hint="Ngày Bắt Đầu"
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                                 </Grid>
 
-                                <Grid Grid.Column="1">
+                                <Grid Grid.Column="1" Margin="5">
                                     <DatePicker 
-                                        Width="150"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
                                         materialDesign:HintAssist.Hint="Ngày Kết Thúc"
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                                 </Grid>
 
-                                <Grid Grid.Column="2">
+                                <Grid Grid.Column="2" Margin="5">
                                     <Button
                                         Margin="5"
-                                        VerticalAlignment="Center"
                                         Content="{materialDesign:PackIcon FilterOutline}"
                                         ToolTip="Filter" />
                                 </Grid>
@@ -252,13 +209,13 @@
 
                             <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
                                 <Grid Grid.Column="0" Margin="5">
-                                    <materialDesign:Card Background="DarkRed" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+                                    <materialDesign:Card Background="DarkRed" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
@@ -295,7 +252,7 @@
                                 </Grid>
 
                                 <Grid Grid.Column="1" Margin="5">
-                                    <materialDesign:Card Background="#03a9f4" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+                                    <materialDesign:Card Background="#03a9f4" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
@@ -332,7 +289,7 @@
                                 </Grid>
 
                                 <Grid Grid.Column="2" Margin="5">
-                                    <materialDesign:Card Background="#03a9f4" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+                                    <materialDesign:Card Background="#03a9f4" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
@@ -390,34 +347,28 @@
 
                             <Grid Grid.Row="0" Margin="5">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0">
+
+                                <Grid Grid.Column="0" Margin="5">
                                     <DatePicker 
-                                Width="150"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                materialDesign:HintAssist.Hint="Ngày Bắt Đầu"
-                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                                        materialDesign:HintAssist.Hint="Ngày Bắt Đầu"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                                 </Grid>
 
-                                <Grid Grid.Column="1">
+                                <Grid Grid.Column="1" Margin="5">
                                     <DatePicker 
-                                Width="150"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                materialDesign:HintAssist.Hint="Ngày Kết Thúc"
-                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                                        materialDesign:HintAssist.Hint="Ngày Kết Thúc"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                                 </Grid>
 
-                                <Grid Grid.Column="2">
+                                <Grid Grid.Column="2" Margin="5">
                                     <Button
-                                Margin="5"
-                                VerticalAlignment="Center"
-                                Content="{materialDesign:PackIcon FilterOutline}"
-                                ToolTip="Filter" />
+                                        Margin="5"
+                                        Content="{materialDesign:PackIcon FilterOutline}"
+                                        ToolTip="Filter" />
                                 </Grid>
                             </Grid>
 
@@ -430,7 +381,7 @@
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Header="STT"></GridViewColumn>
-                                            <GridViewColumn Header="Tên Vật Tư"></GridViewColumn>
+                                            <GridViewColumn Header="Tên Sản Phẩm"></GridViewColumn>
                                             <GridViewColumn Header="Số Lượng Tồn"></GridViewColumn>
                                         </GridView>
                                     </ListView.View>
