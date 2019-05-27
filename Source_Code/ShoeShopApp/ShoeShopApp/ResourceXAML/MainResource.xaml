@@ -4,5 +4,6 @@
                     xmlns:local="clr-namespace:ShoeShopApp.ResourceXAML">
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
     <viewmodel:SanPhamViewModel x:Key="SPVM"></viewmodel:SanPhamViewModel>
-
+    <viewmodel:LoaiSanPhamViewModel x:Key="LoaiSPVM"></viewmodel:LoaiSanPhamViewModel>
+    <viewmodel:KhachHangViewModel x:Key="KhachHangVM"></viewmodel:KhachHangViewModel>
 </ResourceDictionary>
