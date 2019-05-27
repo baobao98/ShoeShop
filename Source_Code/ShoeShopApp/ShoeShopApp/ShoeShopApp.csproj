@@ -80,6 +80,9 @@
     <Compile Include="AdduserWindow.xaml.cs">
       <DependentUpon>AdduserWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HoaDonWindow.xaml.cs">
+      <DependentUpon>HoaDonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -144,11 +147,16 @@
     <Compile Include="UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\HoaDonViewModel.cs" />
     <Compile Include="ViewModel\SuplierViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Page Include="AdduserWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HoaDonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>

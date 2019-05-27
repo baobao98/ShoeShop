@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShoeShopApp"
+        xmlns:uc="clr-namespace:ShoeShopApp.MyUserControl"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         
- 
+         
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Login" Height="500" Width="350" 
         ResizeMode="NoResize" 
@@ -16,10 +17,25 @@
         DataContext="{StaticResource LoginVM}"
         FontFamily="Segoe UI Emoji"
         Name="loginWindow">
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseDown">
+            <i:InvokeCommandAction 
+                Command="{Binding MouseMoveWindowCommand}"
+                CommandParameter="{Binding ElementName=loginWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <!--xmlns:uc="clr-namespace:QuanLyKho.UserControlKteam"-->
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC></uc:ControlBarUC>
+        </Grid>
+        
+        <Grid Grid.Row="1">
         <Rectangle Height="280" VerticalAlignment="Top">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -68,7 +84,6 @@
                 Command="{Binding LoginCommand}"
                 CommandParameter="{Binding ElementName=loginWindow}" Margin="178,0,52,65"/>
         <Button Width="120" 
-                IsDefault="True"
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
                 
@@ -77,5 +92,6 @@
                 CommandParameter="{Binding ElementName=loginWindow}" Margin="53,0,177,65"/>
         <TextBlock Text="Forgot password?" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30" Foreground="Gray" Cursor="Hand"/>
         <Image Source="Assets/home.png" Width="100" Height="100" VerticalAlignment="Top" Margin="30"/>
+        </Grid>
     </Grid>
 </Window>

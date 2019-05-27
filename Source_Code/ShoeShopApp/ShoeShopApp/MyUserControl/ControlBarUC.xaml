@@ -20,7 +20,7 @@
     </i:Interaction.Triggers>
     
     <Grid>
-        <materialDesign:ColorZone Mode="Dark">
+        <materialDesign:ColorZone Mode="Dark" Background="DarkBlue">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                     <StackPanel.Resources>

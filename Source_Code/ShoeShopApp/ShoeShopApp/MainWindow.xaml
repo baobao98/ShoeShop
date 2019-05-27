@@ -53,10 +53,11 @@
             <!--menu-->
             <Grid Grid.Row="0" Margin="5">
                 <materialDesign:ColorZone 
-                    Mode="PrimaryDark" CornerRadius="3" 
-                    materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                    Mode="Dark" Background="CadetBlue" CornerRadius="3" 
+                    materialDesign:ShadowAssist.ShadowDepth="Depth2">
                     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -91,7 +92,7 @@
                             </Style>
                         </Grid.Resources>
 
-                        <Button Grid.Column="0" ToolTip="Quản lí Sản Phẩm">
+                        <Button Command="{Binding SanPhamCommand}" Grid.Column="0" ToolTip="Quản lí Sản Phẩm">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
@@ -108,7 +109,7 @@
                             </Grid>
                         </Button>
 
-                        <Button Grid.Column="1" ToolTip="Quản lí Hoá Đơn">
+                        <Button Command="{Binding HoaDonCommand}" Grid.Column="1" ToolTip="Quản lí Hoá Đơn">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
@@ -125,7 +126,7 @@
                             </Grid>
                         </Button>
 
-                        <Button Grid.Column="2" ToolTip="Quản lí Nhân Viên">
+                        <Button  Command="{Binding NhanVienCommand}" Grid.Column="2" ToolTip="Quản lí Nhân Viên">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
@@ -142,7 +143,7 @@
                             </Grid>
                         </Button>
 
-                        <Button Grid.Column="3" ToolTip="Quản lí Khách Hàng">
+                        <Button Command="{Binding KhachHangCommand}" Grid.Column="3" ToolTip="Quản lí Khách Hàng">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
@@ -155,6 +156,22 @@
 
                                 <Grid Grid.Row="1">
                                     <materialDesign:PackIcon HorizontalAlignment="Center" Kind="AccountMultiple" Height="25" Width="25" />
+                                </Grid>
+                            </Grid>
+                        </Button>
+                        <Button Command="{Binding DangXuatCommand}" CommandParameter="{Binding ElementName=mainWindow}" Grid.Column="4" ToolTip="Đăng Xuất" Background="LawnGreen">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0">
+                                    <TextBlock HorizontalAlignment="Center" Text="Đăng Xuất" Foreground="Brown"></TextBlock>
+                                </Grid>
+
+                                <Grid Grid.Row="1">
+                                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Logout" Height="25" Width="25" />
                                 </Grid>
                             </Grid>
                         </Button>
@@ -244,7 +261,7 @@
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
                                                 Style="{StaticResource MaterialDesignHeadlineTextBlock}"
-                                                Text="9999999">
+                                                Text="300">
                                             </TextBlock>
 
                                             <materialDesign:PopupBox HorizontalAlignment="Right" Padding="2 0 2 0">
@@ -281,7 +298,7 @@
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
                                                 Style="{StaticResource MaterialDesignHeadlineTextBlock}"
-                                                Text="9999999">
+                                                Text="131">
                                             </TextBlock>
 
                                             <materialDesign:PopupBox HorizontalAlignment="Right" Padding="2 0 2 0">
@@ -318,7 +335,7 @@
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
                                                 Style="{StaticResource MaterialDesignHeadlineTextBlock}"
-                                                Text="9999999">
+                                                Text="169">
                                             </TextBlock>
 
                                             <materialDesign:PopupBox HorizontalAlignment="Right" Padding="2 0 2 0">

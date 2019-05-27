@@ -75,7 +75,8 @@
                             </Grid>
 
                             <Grid Grid.Column="1">
-                                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                                <Button Command="{Binding LoaiNVCommand}"
+                                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
                                         ToolTip="Resource name: MaterialDesignRaisedAccentButton">
                                     Loại NV
                                 </Button>

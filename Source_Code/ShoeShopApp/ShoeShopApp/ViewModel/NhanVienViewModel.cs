@@ -12,9 +12,11 @@ namespace ShoeShopApp.ViewModel
     public class NhanVienViewModel : BaseViewModel
     {
         //Command 
+        
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand LoaiNVCommand { get; set; }
 
         private bool _pEnable = false;
         public bool pEnable { get => _pEnable; set { _pEnable = value; OnPropertyChanged(); } }
@@ -89,9 +91,10 @@ namespace ShoeShopApp.ViewModel
 
         public NhanVienViewModel()
         {
-
             List = new ObservableCollection<NhanVien>(DataProvider.Ins.db.NhanViens.Where(h => h.isDeleted == false));
             LoaiNV = new ObservableCollection<LoaiNV>(DataProvider.Ins.db.LoaiNVs.Where(h => h.isDeleted == false));
+
+            LoaiNVCommand= new RelayCommand<object>(p => { return true; }, p => { LoaiNhanVienWindow wd = new LoaiNhanVienWindow(); wd.ShowDialog(); });
 
             AddCommand = new RelayCommand<object>(
               (p) =>

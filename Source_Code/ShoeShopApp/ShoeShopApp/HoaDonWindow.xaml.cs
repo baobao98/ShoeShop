@@ -1,5 +1,4 @@
-﻿using ShoeShopApp.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +15,11 @@ using System.Windows.Shapes;
 namespace ShoeShopApp
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for HoaDonWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class HoaDonWindow : Window
     {
-        public LoginWindow()
+        public HoaDonWindow()
         {
             InitializeComponent();
         }

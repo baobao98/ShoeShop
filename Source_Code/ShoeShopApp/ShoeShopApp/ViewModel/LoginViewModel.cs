@@ -14,6 +14,7 @@ namespace ShoeShopApp.ViewModel
     public class state
     {
         public static int idcur;
+        public static int role;
     }
     public class LoginViewModel:BaseViewModel
     {
@@ -28,6 +29,8 @@ namespace ShoeShopApp.ViewModel
         public ICommand LoginCommand { get; set; }
         public ICommand RegistrationCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
+
+
         // mọi thứ xử lý sẽ nằm trong này
         public LoginViewModel()
         {
@@ -58,7 +61,7 @@ namespace ShoeShopApp.ViewModel
 
             //string passEncode = MD5Hash(Base64Encode(Password));
                  
-            int accCount = DataProvider.Ins.db.TaiKhoans.Where(x => x.TenDN == UserName && x.MatKhau == Password).Count();
+            int accCount = DataProvider.Ins.db.TaiKhoans.Where(x => x.TenDN == UserName && x.MatKhau == Password &&x.isDeleted==false).Count();
             if (accCount > 0)
             {
                 IsLogin = true;
@@ -67,6 +70,7 @@ namespace ShoeShopApp.ViewModel
                 if (idnhanvien != null)
                 {
                     state.idcur = idnhanvien.MaNV;
+                    state.role = idnhanvien.MaLoaiNV;
                     IDNV=idnhanvien.HoVaTen;
                 }
                 p.Close();
@@ -98,6 +102,7 @@ namespace ShoeShopApp.ViewModel
         //    }
         //    return hash.ToString();
         //}
+
 
 
     }

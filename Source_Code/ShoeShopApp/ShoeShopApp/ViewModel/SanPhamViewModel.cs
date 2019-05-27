@@ -66,6 +66,8 @@ namespace ShoeShopApp.ViewModel
         private string _Anh;
         public string Anh { get => _Anh; set { _Anh = value; OnPropertyChanged(); } }
 
+        public ICommand LoaiSPCommand { get; set; }
+        public ICommand NCCCommand { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
@@ -75,6 +77,9 @@ namespace ShoeShopApp.ViewModel
         {
             List = new ObservableCollection<SanPham>(DataProvider.Ins.db.SanPhams.Where(sp=>sp.isDeleted==false));
             LoaiSP = new ObservableCollection<LoaiSP>(DataProvider.Ins.db.LoaiSPs);
+
+            NCCCommand = new RelayCommand<object>(p => { return true; }, p => { SuplierWindow wd = new SuplierWindow(); wd.ShowDialog(); });
+            LoaiSPCommand = new RelayCommand<object>(p => { return true; }, p => { LoaiSanPhamWindow wd = new LoaiSanPhamWindow(); wd.ShowDialog(); });
 
             AddCommand = new RelayCommand<object>((p) =>
             {

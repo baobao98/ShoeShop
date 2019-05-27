@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShoeShopApp"
         mc:Ignorable="d"
+        xmlns:uc="clr-namespace:ShoeShopApp.MyUserControl"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
@@ -26,7 +27,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <!--<uc:ControlBarUC Tag="{Binding Title, ElementName=window}"></uc:ControlBarUC>-->
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=window}"></uc:ControlBarUC>
         </Grid>
 
         <Grid Grid.Row="1">
