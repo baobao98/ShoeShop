@@ -19,9 +19,10 @@ namespace ShoeShopApp.ViewModel
         private string _Password;
         public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
 
-        public int IDNV { get; set; }
+        public String IDNV { get; set; }
         public ICommand CloseCommand { get; set; }
         public ICommand LoginCommand { get; set; }
+        public ICommand RegistrationCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
         // mọi thứ xử lý sẽ nằm trong này
         public LoginViewModel()
@@ -29,12 +30,18 @@ namespace ShoeShopApp.ViewModel
             IsLogin = false;
             Password = "";
             UserName = "";
+            RegistrationCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { registration(p); });
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Login(p); });
             //LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { MessageBox.Show("hishishsi"); });
             CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { p.Close(); });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
+            IDNV = "Error";
         }
-
+        void registration (Window p)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
+        }
         void Login(Window p)
         {
             if (p == null)
@@ -46,12 +53,17 @@ namespace ShoeShopApp.ViewModel
              */
 
             //string passEncode = MD5Hash(Base64Encode(Password));
-            int idtk = DataProvider.Ins.db.TaiKhoans.Where(x => x.TenDN == UserName && x.MatKhau == Password).SingleOrDefault().ID;       
+                 
             int accCount = DataProvider.Ins.db.TaiKhoans.Where(x => x.TenDN == UserName && x.MatKhau == Password).Count();
             if (accCount > 0)
             {
                 IsLogin = true;
-                IDNV = DataProvider.Ins.db.NhanViens.Where(x => x.TaiKhoan == idtk).SingleOrDefault().MaNV;
+                int idtk = DataProvider.Ins.db.TaiKhoans.Where(x => x.TenDN == UserName && x.MatKhau == Password).SingleOrDefault().ID;
+                var idnhanvien = DataProvider.Ins.db.NhanViens.Where(x => x.TaiKhoan == idtk).SingleOrDefault();
+                if (idnhanvien != null)
+                {
+                    IDNV=idnhanvien.HoVaTen;
+                }
                 p.Close();
             }
             else

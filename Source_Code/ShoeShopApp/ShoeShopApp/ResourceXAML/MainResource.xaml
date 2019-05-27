@@ -4,5 +4,7 @@
                     xmlns:local="clr-namespace:ShoeShopApp.ResourceXAML">
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
+    <viewmodel:RegistationViewModel x:Key="registationVM"></viewmodel:RegistationViewModel>
+    <viewmodel:UserViewModel x:Key="UserVM"></viewmodel:UserViewModel>
     <viewmodel:SuplierViewModel x:Key="SuplierVM"></viewmodel:SuplierViewModel>
 </ResourceDictionary>
