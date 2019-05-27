@@ -130,6 +130,7 @@ namespace ShoeShopApp.ViewModel
                 SanPham.MaLoaiSP = SelectedLoaiSP.MaLoaiSP;
                 SanPham.Gia = Gia;
                 SanPham.Mau = Mau;
+                SanPham.Anh = Anh;
                 SanPham.SoLuong = SoLuong;
                 DataProvider.Ins.db.SaveChanges();
 
