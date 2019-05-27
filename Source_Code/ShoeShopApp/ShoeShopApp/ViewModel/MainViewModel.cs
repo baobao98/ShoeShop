@@ -37,8 +37,8 @@ namespace ShoeShopApp.ViewModel
                   if (loginVM.IsLogin)
                   {
                       p.Show();
-                      int a = 1;
-                      load(a);
+                      String ten = loginVM.IDNV;
+                      load(ten);
                   }
                   else
                   {
@@ -50,12 +50,12 @@ namespace ShoeShopApp.ViewModel
             //textContent = "Hello World!!! This text is loaded from database (table NhaCungCap): <" + nhaCungCaps[0].TenNCC + "> " +
             //    "Test connect successfully";
         }
-        void load(int a)
+        void load(String a)
         {
             List<NhaCungCap> nhaCungCaps = new List<NhaCungCap>();
             nhaCungCaps = DataProvider.Ins.db.NhaCungCaps.ToList();
             textContent = "Hello World!!! This text is loaded from database (table NhaCungCap): <" + nhaCungCaps[0].TenNCC + "> " +
-                "Test connect successfully"+a.ToString();
+                "Test connect successfully"+a;
         }
     }
 }
