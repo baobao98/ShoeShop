@@ -1,0 +1,125 @@
+﻿<Window x:Class="ShoeShopApp.SanPhamWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShoeShopApp"
+        mc:Ignorable="d"
+        
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        x:Name="window"
+        DataContext="{StaticResource SPVM}"   
+        Title="SanPham" Height="450" Width="800">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <materialDesign:Card Grid.Row="0" Margin="5">
+
+                    <Grid>
+                        <TextBox Text="{Binding TenSP, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5" materialDesign:HintAssist.Hint="Tên sản phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Row="1" Margin="5">
+                    <Grid>
+                        <ComboBox Margin="5 5 15 5" DisplayMemberPath="TenLoaiSP" ItemsSource="{Binding LoaiSP}" SelectedItem="{Binding SelectedLoaiSP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên loại sản phẩm" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
+                    </Grid>
+                </materialDesign:Card>
+
+                <materialDesign:Card Grid.Row="2" Margin="5">
+                    <Grid>
+                        <TextBox Text="{Binding Gia, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5" materialDesign:HintAssist.Hint="Giá" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <materialDesign:Card Grid.Row="0" Margin="5">
+                    <Grid>
+                        <TextBox Text="{Binding Mau, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5" materialDesign:HintAssist.Hint="Màu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    </Grid>
+                </materialDesign:Card>
+
+                <materialDesign:Card Grid.Row="1" Margin="5">
+                    <Grid>
+                        <TextBox Text="{Binding SoLuong, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5" materialDesign:HintAssist.Hint="Số lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Row="2" Margin="5">
+                    <Grid>
+                        <Button FontSize="20" Command="{Binding ImageCommand}" x:Name="BrowseButton" Content="Browse" HorizontalAlignment="Left"   
+                ></Button>
+                    </Grid>
+                </materialDesign:Card>
+                
+            </Grid>
+            <materialDesign:Card Grid.Column="2" Margin="5">
+                <Image x:Name="img" Source="{Binding Anh}"></Image>
+                <!--<TextBox Text="{Binding Anh}"></TextBox>-->
+            </materialDesign:Card>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <materialDesign:Card Grid.Row="0" Margin="5">
+                <WrapPanel>
+                    <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
+                    <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
+                    <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="5" Width="100"></Button>
+                </WrapPanel>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Row="7" Margin="5" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Mã sản phẩm" DisplayMemberBinding="{Binding MaSP}"></GridViewColumn>
+                                <GridViewColumn Header="Tên sản phẩm" DisplayMemberBinding="{Binding TenSP}"></GridViewColumn>
+                                <GridViewColumn Header="Tên loại sản phẩm" DisplayMemberBinding="{Binding LoaiSP.TenLoaiSP}"></GridViewColumn>
+                                <GridViewColumn Header="Giá" DisplayMemberBinding="{Binding Gia}"></GridViewColumn>
+                                <GridViewColumn Header="Màu" DisplayMemberBinding="{Binding Mau}"></GridViewColumn>
+                                <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding SoLuong}"></GridViewColumn>
+                                <!--<GridViewColumn Header="Ảnh" DisplayMemberBinding="{Binding Anh}"></GridViewColumn>-->
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+
+    </Grid>
+</Window>

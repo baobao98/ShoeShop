@@ -7,4 +7,7 @@
     <viewmodel:RegistationViewModel x:Key="registationVM"></viewmodel:RegistationViewModel>
     <viewmodel:UserViewModel x:Key="UserVM"></viewmodel:UserViewModel>
     <viewmodel:SuplierViewModel x:Key="SuplierVM"></viewmodel:SuplierViewModel>
+    <viewmodel:SanPhamViewModel x:Key="SPVM"></viewmodel:SanPhamViewModel>
+    <viewmodel:LoaiSanPhamViewModel x:Key="LoaiSPVM"></viewmodel:LoaiSanPhamViewModel>
+    <viewmodel:KhachHangViewModel x:Key="KhachHangVM"></viewmodel:KhachHangViewModel>
 </ResourceDictionary>

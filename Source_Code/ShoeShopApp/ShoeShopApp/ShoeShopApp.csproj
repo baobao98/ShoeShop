@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ShoeShopApp</RootNamespace>
     <AssemblyName>ShoeShopApp</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -78,6 +79,11 @@
     </ApplicationDefinition>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    <Compile Include="KhachHangWindow.xaml.cs">
+      <DependentUpon>KhachHangWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoaiSanPhamWindow.xaml.cs">
+      <DependentUpon>LoaiSanPhamWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ChiaTietHoaDon.cs">
       <DependentUpon>ShoeShopDB.tt</DependentUpon>
@@ -131,13 +137,23 @@
     <Compile Include="UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\RegistationViewModel.cs" />
-    <Compile Include="ViewModel\SuplierViewModel.cs" />
-    <Compile Include="ViewModel\UserViewModel.cs" />
     <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="SanPhamWindow.xaml.cs">
+      <DependentUpon>SanPhamWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\KhachHangViewModel.cs" />
+    <Compile Include="ViewModel\LoaiSanPhamViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SanPhamViewModel.cs" />
+    <Page Include="KhachHangWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoaiSanPhamWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SanPhamWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,6 +234,10 @@
     <Resource Include="Assets\home.png" />
     <Content Include="bin\Debug\ShoeShopApp.exe" />
     <Content Include="bin\Debug\ShoeShopApp.pdb" />
+    <Resource Include="Images\BititsHunter.jpg" />
+    <Resource Include="Images\NikeAirMax90.jpg" />
+    <Resource Include="Images\NikeAirMax97.jpg" />
+    <Resource Include="Images\UltraBoost.jpg" />
     <Content Include="Model\ShoeShopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ShoeShopDB.Context.cs</LastGenOutput>

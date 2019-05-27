@@ -9,28 +9,45 @@
 
 namespace ShoeShopApp.Model
 {
+    using ShoeShopApp.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class SanPham
+    public partial class SanPham:BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SanPham()
         {
             this.ChiaTietHoaDons = new HashSet<ChiaTietHoaDon>();
         }
-    
-        public int MaSP { get; set; }
-        public string TenSP { get; set; }
-        public int MaLoaiSP { get; set; }
-        public decimal Gia { get; set; }
-        public string Mau { get; set; }
-        public Nullable<int> SoLuong { get; set; }
-        public string Anh { get; set; }
-        public bool isDeleted { get; set; }
-    
+
+        private int _MaSP;
+        public int MaSP { get => _MaSP; set { _MaSP = value; OnPropertyChanged(); } }
+
+        private string _TenSP;
+        public string TenSP { get => _TenSP; set { _TenSP = value; OnPropertyChanged(); } }
+
+        private int _MaLoaiSP;
+        public int MaLoaiSP { get => _MaLoaiSP; set { _MaLoaiSP = value; OnPropertyChanged(); } }
+
+        private decimal _Gia;
+        public decimal Gia { get => _Gia; set { _Gia = value; OnPropertyChanged(); } }
+
+        private string _Mau;
+        public string Mau { get => _Mau; set { _Mau = value; OnPropertyChanged(); } }
+
+        private Nullable<int> _SoLuong;
+        public Nullable<int> SoLuong { get => _SoLuong; set { _SoLuong = value; OnPropertyChanged(); } }
+
+        private string _Anh;
+        public string Anh { get => _Anh; set { _Anh = value; OnPropertyChanged(); } }
+
+        private bool _isDeleted;
+        public bool isDeleted { get => _isDeleted; set { _isDeleted = value; OnPropertyChanged(); } }
+            
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiaTietHoaDon> ChiaTietHoaDons { get; set; }
-        public virtual LoaiSP LoaiSP { get; set; }
+        private LoaiSP _LoaiSP;
+        public virtual LoaiSP LoaiSP { get => _LoaiSP; set { _LoaiSP = value; OnPropertyChanged(); } }
     }
 }
