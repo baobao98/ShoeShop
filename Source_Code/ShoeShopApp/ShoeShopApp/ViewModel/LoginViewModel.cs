@@ -11,7 +11,11 @@ using System.Windows.Input;
 
 namespace ShoeShopApp.ViewModel
 {
-    class LoginViewModel:BaseViewModel
+    public class state
+    {
+        public static int idcur;
+    }
+    public class LoginViewModel:BaseViewModel
     {
         public bool IsLogin { get; set; }
         private string _UserName;
@@ -62,6 +66,7 @@ namespace ShoeShopApp.ViewModel
                 var idnhanvien = DataProvider.Ins.db.NhanViens.Where(x => x.TaiKhoan == idtk).SingleOrDefault();
                 if (idnhanvien != null)
                 {
+                    state.idcur = idnhanvien.MaNV;
                     IDNV=idnhanvien.HoVaTen;
                 }
                 p.Close();

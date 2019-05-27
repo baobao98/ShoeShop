@@ -9,30 +9,45 @@
 
 namespace ShoeShopApp.Model
 {
+    using ShoeShopApp.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class NhanVien
+
+    public partial class NhanVien : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhanVien()
         {
             this.HoaDons = new HashSet<HoaDon>();
         }
-    
+
         public int MaNV { get; set; }
-        public string HoVaTen { get; set; }
-        public string CMND { get; set; }
-        public string DiaChi { get; set; }
-        public string SDT { get; set; }
-        public Nullable<System.DateTime> NgaySinh { get; set; }
         public int MaLoaiNV { get; set; }
         public Nullable<int> TaiKhoan { get; set; }
-        public bool isDeleted { get; set; }
-    
+
+
+        public bool _isDeleted;
+        public bool isDeleted { get => _isDeleted; set { _isDeleted = value; OnPropertyChanged(); } }
+
+        private string _HoVaTen;
+        public string HoVaTen { get => _HoVaTen; set { _HoVaTen = value; OnPropertyChanged(); } }
+
+        private string _CMND;
+        public string CMND { get => _CMND; set { _CMND = value; OnPropertyChanged(); } }
+
+        private string _SDT;
+        public string SDT { get => _SDT; set { _SDT = value; OnPropertyChanged(); } }
+
+        private Nullable<System.DateTime> _NgaySinh;
+        public Nullable<System.DateTime> NgaySinh { get => _NgaySinh; set { _NgaySinh = value; OnPropertyChanged(); } }
+
+        private string _DiaChi;
+        public string DiaChi { get => _DiaChi; set { _DiaChi = value; OnPropertyChanged(); } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }
-        public virtual LoaiNV LoaiNV { get; set; }
+        public LoaiNV _LoaiNV;
+        public virtual LoaiNV LoaiNV { get => _LoaiNV; set { _LoaiNV = value; OnPropertyChanged(); } }
         public virtual TaiKhoan TaiKhoan1 { get; set; }
     }
 }

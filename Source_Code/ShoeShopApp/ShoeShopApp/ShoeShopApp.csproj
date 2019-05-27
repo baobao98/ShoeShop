@@ -89,6 +89,9 @@
     <Compile Include="LoaiSanPhamWindow.xaml.cs">
       <DependentUpon>LoaiSanPhamWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoaiNhanVienWindow.xaml.cs">
+      <DependentUpon>LoaiNhanVienWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\ChiaTietHoaDon.cs">
       <DependentUpon>ShoeShopDB.tt</DependentUpon>
     </Compile>
@@ -154,18 +157,31 @@
     <Compile Include="SanPhamWindow.xaml.cs">
       <DependentUpon>SanPhamWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\KhachHangViewModel.cs" />
     <Compile Include="ViewModel\LoaiSanPhamViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegistationViewModel.cs" />
     <Compile Include="ViewModel\SanPhamViewModel.cs" />
+    <Compile Include="ViewModel\ControlBarViewModel.cs" />
+    <Compile Include="ViewModel\LoaiNhanVienViewModel.cs" />
+    <Compile Include="ViewModel\NhanVienViewModel.cs" />
     <Page Include="KhachHangWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoaiSanPhamWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="MyUserControl\ControlBarUC.xaml.cs">
+      <DependentUpon>ControlBarUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NhanVienWindow.xaml.cs">
+      <DependentUpon>NhanVienWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Page Include="LoaiNhanVienWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,6 +198,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControl\ControlBarUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NhanVienWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -239,9 +263,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MyUserControl\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\home.png" />
     <Content Include="bin\Debug\ShoeShopApp.exe" />
@@ -252,8 +274,8 @@
     <Resource Include="Images\UltraBoost.jpg" />
     <Content Include="Model\ShoeShopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ShoeShopDB.Context.cs</LastGenOutput>
       <DependentUpon>ShoeShopDB.edmx</DependentUpon>
+      <LastGenOutput>ShoeShopDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\ShoeShopDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
