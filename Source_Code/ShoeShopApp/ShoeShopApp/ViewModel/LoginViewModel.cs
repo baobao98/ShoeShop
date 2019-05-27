@@ -15,10 +15,10 @@ namespace ShoeShopApp.ViewModel
     {
         public static int idcur;
         public static int role;
+        public static bool IsLogin;
     }
     public class LoginViewModel:BaseViewModel
     {
-        public bool IsLogin { get; set; }
         private string _UserName;
         public string UserName { get => _UserName; set { _UserName = value; OnPropertyChanged(); } }
         private string _Password;
@@ -34,7 +34,7 @@ namespace ShoeShopApp.ViewModel
         // mọi thứ xử lý sẽ nằm trong này
         public LoginViewModel()
         {
-            IsLogin = false;
+            state.IsLogin = false;
             Password = "";
             UserName = "";
             RegistrationCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { registration(p); });
@@ -52,8 +52,9 @@ namespace ShoeShopApp.ViewModel
         void Login(Window p)
         {
             if (p == null)
+            {
                 return;
-
+            }
             /*
              baobao
              123
@@ -64,7 +65,7 @@ namespace ShoeShopApp.ViewModel
             int accCount = DataProvider.Ins.db.TaiKhoans.Where(x => x.TenDN == UserName && x.MatKhau == Password &&x.isDeleted==false).Count();
             if (accCount > 0)
             {
-                IsLogin = true;
+                state.IsLogin = true;
                 int idtk = DataProvider.Ins.db.TaiKhoans.Where(x => x.TenDN == UserName && x.MatKhau == Password).SingleOrDefault().ID;
                 var idnhanvien = DataProvider.Ins.db.NhanViens.Where(x => x.TaiKhoan == idtk).SingleOrDefault();
                 if (idnhanvien != null)
@@ -73,11 +74,14 @@ namespace ShoeShopApp.ViewModel
                     state.role = idnhanvien.MaLoaiNV;
                     IDNV=idnhanvien.HoVaTen;
                 }
+                
                 p.Close();
+                UserName = "";
+                Password = "";
             }
             else
             {
-                IsLogin = false;
+                state.IsLogin = false;
                 MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
             }
         }

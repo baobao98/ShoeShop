@@ -55,6 +55,8 @@ namespace ShoeShopApp.ViewModel
         }
         void check(Window p)
         {
+            Isloaded = false;
+            state.IsLogin = false;
             p.Hide();
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.ShowDialog();
@@ -63,7 +65,7 @@ namespace ShoeShopApp.ViewModel
                 return;
             }
             var loginVM = loginWindow.DataContext as LoginViewModel;
-            if (loginVM.IsLogin)
+            if (state.IsLogin==true)
             {
                 p.Show();
             }

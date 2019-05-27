@@ -24,5 +24,10 @@ namespace ShoeShopApp
         {
             InitializeComponent();
         }
+
+        private void ControlBarUC_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
