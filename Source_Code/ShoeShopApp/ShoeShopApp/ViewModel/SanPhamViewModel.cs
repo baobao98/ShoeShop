@@ -85,7 +85,7 @@ namespace ShoeShopApp.ViewModel
             {
                 //if (string.IsNullOrEmpty(TenSP))
                 //    return false;
-                if (TenSP != null && Mau!= null && SoLuong!=null)
+                if (TenSP != null && Mau!= null && SoLuong!=null && source!=null)
                     return true;
                 return false;
 
