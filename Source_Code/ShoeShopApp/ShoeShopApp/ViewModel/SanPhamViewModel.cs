@@ -108,7 +108,7 @@ namespace ShoeShopApp.ViewModel
 
                 string anh = @"Images\" + FileName;
 
-                var Sanpham = new SanPham() { TenSP = TenSP, MaLoaiSP = SelectedLoaiSP.MaLoaiSP, Gia = Gia, Mau = Mau, SoLuong = SoLuong, Anh=anh};
+                var Sanpham = new SanPham() { TenSP = TenSP, MaLoaiSP = SelectedLoaiSP.MaLoaiSP, Gia = Gia, Mau = Mau, SoLuong = SoLuong, Anh= dest };
 
                 DataProvider.Ins.db.SanPhams.Add(Sanpham);
                 DataProvider.Ins.db.SaveChanges();
