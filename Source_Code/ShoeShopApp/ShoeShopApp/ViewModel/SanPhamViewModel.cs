@@ -78,7 +78,13 @@ namespace ShoeShopApp.ViewModel
             List = new ObservableCollection<SanPham>(DataProvider.Ins.db.SanPhams.Where(sp=>sp.isDeleted==false));
             LoaiSP = new ObservableCollection<LoaiSP>(DataProvider.Ins.db.LoaiSPs);
 
-            NCCCommand = new RelayCommand<object>(p => { return true; }, p => { SuplierWindow wd = new SuplierWindow(); wd.ShowDialog(); });
+            NCCCommand = new RelayCommand<object>(p => {
+                if (state.role != 4)
+                {
+                    return false;
+                }
+                return true;
+            }, p => { SuplierWindow wd = new SuplierWindow(); wd.ShowDialog(); });
             LoaiSPCommand = new RelayCommand<object>(p => { return true; }, p => { LoaiSanPhamWindow wd = new LoaiSanPhamWindow(); wd.ShowDialog(); });
 
             AddCommand = new RelayCommand<object>((p) =>
