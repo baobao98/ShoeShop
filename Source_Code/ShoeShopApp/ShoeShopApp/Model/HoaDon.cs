@@ -29,6 +29,5 @@ namespace ShoeShopApp.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiaTietHoaDon> ChiaTietHoaDons { get; set; }
         public virtual KhachHang KhachHang { get; set; }
-        public virtual NhanVien NhanVien { get; set; }
     }
 }

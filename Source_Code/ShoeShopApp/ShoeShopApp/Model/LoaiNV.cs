@@ -14,18 +14,9 @@ namespace ShoeShopApp.Model
     
     public partial class LoaiNV
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LoaiNV()
-        {
-            this.NhanViens = new HashSet<NhanVien>();
-        }
-    
         public int MaLoaiNV { get; set; }
         public string TenLoaiNV { get; set; }
         public Nullable<decimal> TienThuong { get; set; }
         public bool isDeleted { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NhanVien> NhanViens { get; set; }
     }
 }
