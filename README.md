@@ -1,5 +1,5 @@
 # ShoeShop
-Manage your shop to get high profit 
+Manage your shop to get high profit  /n
 Release version 1.0
 THIS APP IS STILL DEVELOPING 
 --------------------------------
