@@ -1,0 +1,8 @@
+You have to install the database in your own sql server first
+-------------------------
+account 1:
+	name: admin
+	pass: 123
+account 2:
+	name: thungan
+	pass: 123
